@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DiretoDuCampo</string>
+    <string name="product">Produto</string>
+    <string name="price">Preço</string>
+    <string name="among">Quantidade</string>
+    <string name="seller">Vendedor</string>
+    <string name="remove">Remove</string>
+</resources>
