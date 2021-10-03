@@ -8,6 +8,7 @@ import br.com.univesp.product.model.Product;
 import br.com.univesp.product.retrofit.ProductRetrofit;
 import br.com.univesp.product.retrofit.ProductService;
 import br.com.univesp.product.retrofit.callback.BaseCallback;
+import br.com.univesp.product.retrofit.callback.VoidCallback;
 import retrofit2.Call;
 
 public class ProductRepository {
@@ -43,14 +44,6 @@ public class ProductRepository {
         }));
     }
 
-    private void localUpdate(List<Product> products, ProductsCallback<List<Product>> callback) {
-        new BaseAsyncTask<>(() -> {
-            dao.saveAll(products);
-            return dao.findAll();
-        }, callback::sucess).execute();
-    }
-
-
     public void save(Product product, ProductsCallback<Product> callback) {
         Call<Product> call = productService.postProduct(product);
         call.enqueue(new BaseCallback<>(new BaseCallback.ResponseCallback<Product>() {
@@ -66,10 +59,62 @@ public class ProductRepository {
         }));
     }
 
+    public void update(Product product, ProductsCallback<Product> callback) {
+        Call<Product> call = productService.updateProduct(product.getId(), product);
+        call.enqueue(new BaseCallback<>(new BaseCallback.ResponseCallback<Product>() {
+            @Override
+            public void sucess(Product updatedProduct) {
+                localUpdate(updatedProduct, callback);
+            }
+
+            @Override
+            public void fail(String error) {
+                callback.fail(error);
+            }
+        }));
+    }
+
+    public void delete(Product product, ProductsCallback<Void> callback) {
+        Call<Void> call = productService.deleteProduct(product.getId());
+        call.enqueue(new VoidCallback(new VoidCallback.ResponseCallback() {
+            @Override
+            public void sucess() {
+                localDelete(product, callback);
+            }
+
+            @Override
+            public void fail(String error) {
+                callback.fail(error);
+            }
+        }));
+    }
+
+    private void localDelete(Product product, ProductsCallback<Void> callback) {
+        new BaseAsyncTask<>(() -> {
+            dao.remove(product);
+            return null;
+        }, callback::sucess)
+                .execute();
+    }
+
+    private void localUpdate(List<Product> products, ProductsCallback<List<Product>> callback) {
+        new BaseAsyncTask<>(() -> {
+            dao.saveAll(products);
+            return dao.findAll();
+        }, callback::sucess).execute();
+    }
+
+    private void localUpdate(Product product, ProductsCallback<Product> callback) {
+        new BaseAsyncTask<>(() -> {
+            dao.save(product);
+            return dao.findByID(product.getId());
+        }, callback::sucess).execute();
+    }
+
     private void localSave(Product newProduct, ProductsCallback<Product> callback) {
         new BaseAsyncTask<>(() -> {
-            long id = dao.save(newProduct);
-            return dao.findByID(id);
+            dao.updateProduct(newProduct);
+            return newProduct;
         }, callback::sucess).execute();
     }
 

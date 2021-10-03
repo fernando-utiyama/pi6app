@@ -57,16 +57,18 @@ public class ListaProdutosActivity extends AppCompatActivity {
         RecyclerView listaProdutos = findViewById(R.id.activity_lista_produtos_lista);
         adapter = new ListaProdutosAdapter(this, this::abreFormularioEditaProduto);
         listaProdutos.setAdapter(adapter);
-        adapter.setOnItemClickRemoveContextMenuListener(this::remove);
-    }
+        adapter.setOnItemClickRemoveContextMenuListener(((posicao, productRemovido) ->
+                repository.delete(productRemovido, new ProductRepository.ProductsCallback<Void>() {
+                    @Override
+                    public void sucess(Void products) {
+                        adapter.remove(posicao);
+                    }
 
-    private void remove(int posicao,
-                        Product productRemovido) {
-        new BaseAsyncTask<>(() -> {
-            dao.remove(productRemovido);
-            return null;
-        }, resultado -> adapter.remove(posicao))
-                .execute();
+                    @Override
+                    public void fail(String error) {
+                        Toast.makeText(ListaProdutosActivity.this, "Erro na remoção " + error, Toast.LENGTH_SHORT).show();
+                    }
+                })));
     }
 
     private void configuraFabSalvaProduto() {
@@ -91,18 +93,18 @@ public class ListaProdutosActivity extends AppCompatActivity {
 
     private void abreFormularioEditaProduto(int posicao, Product product) {
         new EditaProdutoDialog(this, product,
-                produtoEditado -> edita(posicao, produtoEditado))
+                produtoCriado -> repository.update(produtoCriado, new ProductRepository.ProductsCallback<Product>() {
+                    @Override
+                    public void sucess(Product produtoEditado) {
+                        adapter.edita(posicao, produtoEditado);
+                    }
+
+                    @Override
+                    public void fail(String error) {
+                        Toast.makeText(ListaProdutosActivity.this, "Erro da edição " + error, Toast.LENGTH_SHORT).show();
+                    }
+                }))
                 .show();
     }
-
-    private void edita(int posicao, Product product) {
-        new BaseAsyncTask<>(() -> {
-            dao.updateProduct(product);
-            return product;
-        }, produtoEditado ->
-                adapter.edita(posicao, produtoEditado))
-                .execute();
-    }
-
 
 }

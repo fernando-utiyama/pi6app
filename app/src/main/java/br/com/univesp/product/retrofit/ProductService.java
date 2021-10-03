@@ -8,6 +8,8 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 
 public interface ProductService {
@@ -18,7 +20,10 @@ public interface ProductService {
     @POST("products/create")
     Call<Product> postProduct(@Body Product product);
 
-    @DELETE("products/product")
-    Call<Product> deleteProduct(Long id);
+    @PUT("products/product/{id}")
+    Call<Product> updateProduct(@Path("id") long id, @Body Product product);
+
+    @DELETE("products/product/{id}")
+    Call<Void> deleteProduct(@Path("id") long id);
 
 }
