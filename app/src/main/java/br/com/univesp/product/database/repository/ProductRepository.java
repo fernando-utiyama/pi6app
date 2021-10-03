@@ -1,8 +1,11 @@
 package br.com.univesp.product.database.repository;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.com.univesp.product.asynctask.BaseAsyncTask;
+import br.com.univesp.product.database.EstoqueDatabase;
 import br.com.univesp.product.database.dao.ProductDAO;
 import br.com.univesp.product.model.Product;
 import br.com.univesp.product.retrofit.ProductRetrofit;
@@ -14,10 +17,12 @@ import retrofit2.Call;
 public class ProductRepository {
 
     private final ProductDAO dao;
-    private ProductService productService;
+    private final ProductService productService;
 
-    public ProductRepository(ProductDAO dao) {
-        this.dao = dao;
+    public ProductRepository(Context context) {
+        EstoqueDatabase db = EstoqueDatabase.getInstance(context);
+        dao = db.getProductDAO();
+        productService = new ProductRetrofit().getProductService();
     }
 
     public void findProducts(ProductsCallback<List<Product>> callback) {
@@ -29,7 +34,6 @@ public class ProductRepository {
     }
 
     public void findProductsAPI(ProductsCallback<List<Product>> callback) {
-        productService = new ProductRetrofit().getProductService();
         Call<List<Product>> call = productService.getAllProducts();
         call.enqueue(new BaseCallback<>(new BaseCallback.ResponseCallback<List<Product>>() {
             @Override

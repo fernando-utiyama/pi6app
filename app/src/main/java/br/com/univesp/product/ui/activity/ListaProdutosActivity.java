@@ -24,7 +24,6 @@ public class ListaProdutosActivity extends AppCompatActivity {
 
     private static final String TITULO_APPBAR = "DiretoDuCampo";
     private ListaProdutosAdapter adapter;
-    private ProductDAO dao;
     private ProductRepository repository;
 
     @Override
@@ -36,9 +35,11 @@ public class ListaProdutosActivity extends AppCompatActivity {
         configuraListaProdutos();
         configuraFabSalvaProduto();
 
-        EstoqueDatabase db = EstoqueDatabase.getInstance(this);
-        dao = db.getProductDAO();
-        repository = new ProductRepository(dao);
+        repository = new ProductRepository(this);
+        findProducts();
+    }
+
+    private void findProducts() {
         repository.findProducts(new ProductRepository.ProductsCallback<List<Product>>() {
             @Override
             public void sucess(List<Product> products) {
