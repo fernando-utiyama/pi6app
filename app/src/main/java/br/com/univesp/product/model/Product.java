@@ -12,14 +12,14 @@ public class Product {
     private final long id;
     private final String product;
     private final BigDecimal price;
-    private final int among;
+    private final int quantity;
     private final String seller;
 
-    public Product(long id, String product, BigDecimal price, int among, String seller) {
+    public Product(long id, String product, BigDecimal price, int quantity, String seller) {
         this.id = id;
         this.product = product;
         this.price = price;
-        this.among = among;
+        this.quantity = quantity;
         this.seller = seller;
     }
 
@@ -35,8 +35,8 @@ public class Product {
         return price.setScale(2, BigDecimal.ROUND_HALF_EVEN);
     }
 
-    public int getAmong() {
-        return among;
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getSeller() {

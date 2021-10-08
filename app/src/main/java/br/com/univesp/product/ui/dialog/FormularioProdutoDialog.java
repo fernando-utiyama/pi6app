@@ -72,7 +72,7 @@ abstract public class FormularioProdutoDialog {
             EditText campoPreco = getEditText(viewCriada, R.id.formulario_produto_price);
             campoPreco.setText(product.getPrice().toString());
             EditText campoQuantidade = getEditText(viewCriada, R.id.formulario_produto_quantidade);
-            campoQuantidade.setText(String.valueOf(product.getAmong()));
+            campoQuantidade.setText(String.valueOf(product.getQuantity()));
             EditText campoVendedor = getEditText(viewCriada, R.id.formulario_produto_seller);
             campoVendedor.setText(product.getSeller());
         }

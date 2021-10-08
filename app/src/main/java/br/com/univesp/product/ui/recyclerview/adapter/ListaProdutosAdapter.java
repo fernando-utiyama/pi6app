@@ -124,7 +124,7 @@ public class ListaProdutosAdapter extends
             campoId.setText(String.valueOf(product.getId()));
             campoNome.setText(product.getProduct());
             campoPreco.setText(formataParaMoeda(product.getPrice()));
-            campoQuantidade.setText(String.valueOf(product.getAmong()));
+            campoQuantidade.setText(String.valueOf(product.getQuantity()));
             campoVendedor.setText(String.valueOf(product.getSeller()));
         }
 
