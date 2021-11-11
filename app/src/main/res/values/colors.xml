@@ -4,4 +4,39 @@
     <color name="colorPrimaryDark">#009688</color>
     <color name="colorAccent">#8BC34A</color>
     <color name="colorStart">#F2F6F2</color>
+
+    <color name="indicatiorInactive">#80C3F8</color>
+    <color name="indicatioractive">#0581E5</color>
+    <color name="textSecondary">#515151</color>
+
+    <!-- colors for onboarding two-->
+    <color name="activeIndicators">#6871d0</color>
+    <color name="inactiveIndicator">#84d4dd</color>
+
+    <color name="blackNavy">#10101C</color>
+    <color name="next_1">#8B88DC</color>
+    <color name="next_2">#0183C5</color>
+    <color name="next_3">#2F6DFF</color>
+    <color name="next_4">#5FA091</color>
+    <color name="dark_navy">#0E2132</color>
+
+    <!-- colors for onboarding forth-->
+    <color name="backfroung_forth">#fc8019</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="buttonBack">#14a484</color>
+    <color name="lightGray">#E8E8E8</color>
+
+    <color name="back">#fd6d32</color>
+    <color name="back1">#fec813</color>
+    <color name="back2">#4d1fd3</color>
+    <color name="back3">#62e07f</color>
 </resources>
