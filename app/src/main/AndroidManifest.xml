@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.univesp.product"
-    tools:ignore="GoogleAppIndexingWarning">
+    package="br.com.univesp.diretoducampo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,16 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity
-            android:name=".ui.activity.ListaProdutosActivity"
-            android:exported="true" />
-        <activity android:name=".ui.activity.StartActivity">
+
+        <activity android:name="br.com.univesp.diretoducampo.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity android:name="br.com.univesp.diretoducampo.ui.activity.SharedAnimationActivity" />
+
+        <activity android:name="br.com.univesp.diretoducampo.ui.activity.OnBoardingActivity"
+                  android:theme="@style/AppTheme.TWO" />
+
+        <activity android:name="br.com.univesp.diretoducampo.ui.activity.ListProductsActivity"
+                  android:launchMode="singleTop"/>
+
+    </application>
 </manifest>
