@@ -1,8 +1,30 @@
 <resources>
     <string name="app_name">DiretoDuCampo</string>
-    <string name="product">Produto</string>
+    <string name="product_name">Nome do Produto</string>
     <string name="price">Preço</string>
     <string name="among">Quantidade</string>
-    <string name="seller">Vendedor</string>
-    <string name="remove">Remove</string>
+    <string name="seller">Vendedor(a)</string>
+    <string name="remove">Remover</string>
+    <string name="button_start_label">INICIAR AGORA MESMO</string>
+    <string name="button_next_label">PRÓXIMO</string>
+    <string name="fast_home_delivery_label">DELIVERY RÁPIDO PARA SUA CASA (VERSÃO FUTURA)</string>
+    <string name="fast_home_delivery_description_label">Nossos entregadores sempre no caminho de sua casa!</string>
+    <string name="welcome">Seja bem vindo(a)!</string>
+    <string name="discover_camp_products_label">Descubra produtos exclusivos do campo</string>
+    <string name="discover_camp_products_description_label">Descubra milhares de produtos diretamento do campo para você</string>
+    <string name="socialize_with_friends_label">Socialize com novos amigos (VERSÃO FUTURA)</string>
+    <string name="socialize_with_friends_description_label">Crie bons vínculos com os produtores agrícolas cadastrados através do WhatsApp!</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="exit_question_label">Você quer realmente sair?</string>
+    <string name="yes">SIM</string>
+    <string name="no">NÃO</string>
+    <string name="share_whatsapp">Compartilhar...</string>
+    <string name="product_name_hint_label">Nome do produto</string>
+    <string name="product_image_label">Imagem do Produto</string>
+    <string name="select_image_label">Selecionar imagem do produto</string>
+    <string name="seller_phone_label">Telefone Vendedor(a)</string>
+    <string name="selected_image_label">Imagem selecionada</string>
+    <string name="product_image">Imagem do produto</string>
+    <string name="add_new_product_label">Adicionar novo produto</string>
+    <string name="share_app_label">Compartilhar app DiretoDuCampo</string>
 </resources>
